@@ -32,7 +32,8 @@
     </script>
     <title>Barbatos Shop</title>
 </head>
-<body>
+
+<body class="bg-gray">
     <header class="flex flex-row px-32 py-3 items-center bg-white w-[100vw] justify-between">
         <div>
             <a href="#" class="text-black text-xl">Barbatos Shop</a>
@@ -50,4 +51,5 @@
 
     @yield('content')
 </body>
+
 </html>
