@@ -29,6 +29,6 @@ Route::get('/register', function () {
     return view('register');
 })->name('register');
 
-Route::get('/product-card', function () {
-    return view('components.product-card');
+Route::get('/view-product', function () {
+    return view('view-product-by-category');
 });
