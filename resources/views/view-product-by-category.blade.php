@@ -1,7 +1,7 @@
 @extends('components.layout')
 
 @section('content')
-    <section class="flex flex-col w-[100vw] bg-black/[5%] font-montserrat">
+    <section class="flex flex-col w-[100vw] bg-black/[5%] font-montserrat pt-16">
         <div class="px-24 pt-10">
             <p class="pl-2 py-1 text-black bg-gray rounded-t border-[1px] border-gray-300">Beauty</p>
             <div class="bg-white px-3 py-3 pb-10 grid grid-cols-5 gap-12 mb-5 border-[1px] border-gray-300">

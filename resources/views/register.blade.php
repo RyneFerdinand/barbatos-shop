@@ -1,7 +1,7 @@
 @extends('components.layout')
 
 @section('content')
-    <section class="flex items-center justify-center w-[100vw] bg-black/[5%] font-montserrat">
+    <section class="flex items-center justify-center w-[100vw] pt-16 bg-black/[5%] font-montserrat">
         <div class="flex flex-col bg-white w-[30vw] my-10">
             <h1 class="font-bold p-3 text-center bg-black/[10%]">Register</h1>
             <hr>

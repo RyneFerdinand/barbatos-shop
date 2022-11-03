@@ -34,7 +34,7 @@
 </head>
 
 <body class="bg-gray">
-    <header class="flex flex-row px-32 py-3 items-center bg-white w-[100vw] justify-between">
+    <header class="flex flex-row px-32 py-3 items-center bg-white w-[100vw] justify-between fixed">
         <div>
             <a href="#" class="text-black text-xl">Barbatos Shop</a>
             <select id="category" name="category" class="ml-5">

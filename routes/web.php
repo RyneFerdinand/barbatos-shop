@@ -32,3 +32,7 @@ Route::get('/register', function () {
 Route::get('/view-product', function () {
     return view('view-product-by-category');
 });
+
+Route::get('/product-detail', function () {
+    return view('product-detail');
+});
