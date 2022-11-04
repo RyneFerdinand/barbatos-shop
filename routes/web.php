@@ -37,23 +37,27 @@ Route::get('/product-detail', function () {
     return view('product-detail');
 });
 
-Route::get('/search-product', function(){
+Route::get('/search-product', function () {
     return view('search-product');
 });
 
-Route::get('/manage-product', function(){
+Route::get('/manage-product', function () {
     return view('manage-product');
 });
 
-Route::get('/add-product', function(){
+Route::get('/add-product', function () {
     return view('add-product');
 });
 
 
-Route::get('/update-product', function(){
+Route::get('/update-product', function () {
     return view('update-product');
 });
 
-Route::get('/profile', function(){
+Route::get('/profile', function () {
     return view('profile');
+});
+
+Route::get('/cart', function () {
+    return view('cart');
 });

@@ -7,7 +7,8 @@
                 <input type="text" class="bg-white px-4 outline-none" placeholder="Product Name">
                 <i class="fa fa-search bg-gray-700 text-white p-3 rounded-r-md"></i>
             </div>
-            <button class="bg-gray-700 text-white rounded-md px-3 py-2">Add Product <i class="fa fa-plus text-white"></i></button>
+            <button class="bg-gray-700 text-white rounded-md px-3 py-2">Add Product <i
+                    class="fa fa-plus text-white"></i></button>
         </div>
     </div>
     <div class="w-2/4 mx-auto">
