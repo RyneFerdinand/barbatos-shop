@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:ital,wght@0,300;0,400;0,500;1,600;1,700&display=swap"
         rel="stylesheet">
@@ -34,7 +35,7 @@
 </head>
 
 <body class="bg-gray">
-    <header class="flex flex-row px-32 py-3 items-center bg-white w-[100vw] justify-between fixed">
+    <header class="flex flex-row px-32 py-3 items-center bg-white w-[100vw] justify-between fixed top-0">
         <div>
             <a href="#" class="text-black text-xl">Barbatos Shop</a>
             <select id="category" name="category" class="ml-5">
@@ -49,7 +50,9 @@
         </div>
     </header>
 
-    @yield('content')
+    <main class="mt-6">
+        @yield('content')
+    </main>
 </body>
 
 </html>
