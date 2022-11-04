@@ -1,8 +1,8 @@
 @extends('components.layout')
 
 @section('content')
-    <section class="flex items-center justify-center w-[100vw] pt-16 bg-black/[5%] font-montserrat">
-        <div class="flex flex-col bg-white w-[30vw] my-10">
+    <section class="flex items-center justify-center w-[100vw] bg-black/[5%] font-montserrat py-8 pt-16">
+        <div class="flex flex-col bg-white w-[30vw]">
             <h1 class="font-bold p-3 text-center bg-black/[10%]">Register</h1>
             <hr>
             <form class="flex flex-col px-10 py-5">
