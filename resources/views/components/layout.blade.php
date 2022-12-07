@@ -36,12 +36,28 @@
 
 <body class="bg-gray">
     <header class="flex flex-row px-32 py-3 items-center bg-white w-[100vw] justify-between fixed top-0">
-        <div>
-            <a href="#" class="text-black text-xl">Barbatos Shop</a>
-            <select id="category" name="category" class="ml-5">
-                <option value="" disabled selected class="text-black/[40%]">Category</option>
-                <option value=""></option>
-                <option value=""></option>
+        <div class="flex flex-row items-center">
+            <a href="#" class="text-black text-xl mr-5">Barbatos Shop</a>
+            <div class="flex justify-center">
+                <div>
+                  <div class="dropdown relative">
+                    <button
+                      class="dropdown-toggle flex flex-row items-center" type="button" id="dropdownfeature" data-bs-toggle="dropdown">
+                      Category
+                      <svg data-prefix="fas" data-icon="caret-down" class="w-2 ml-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+                        <path fill="currentColor" d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path>
+                      </svg>
+                    </button>
+                    <div class="dropdown-menu hidden bg-white w-[200px] z-50 pt-2" aria-labelledby="dropdownfeature">
+                        @foreach ($categories as $category)
+                            <a class="mx-2 dropdown-item block w-full bg-white" href="{{url('/category/'.$category->id)}}">
+                                {{$category->name}}
+                            </a>
+                        @endforeach
+                    </div>
+                  </div>
+                </div>
+              </div>
             </select>
         </div>
         <div>

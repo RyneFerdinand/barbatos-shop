@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [CategoryController::class, 'getAllCategories']);
 
 Route::get('/layout', function () {
     return view('components.layout');
@@ -29,17 +29,11 @@ Route::get('/register', function () {
     return view('register');
 })->name('register');
 
-Route::get('/view-product', function () {
-    return view('view-product-by-category');
-});
+Route::get('/category/{id}', [CategoryController::class, 'getCategoryById']);
 
-Route::get('/product-detail', function () {
-    return view('product-detail');
-});
+Route::get('/product/{id}', [ProductController::class, 'getProductById']);
 
-Route::get('/search-product', function () {
-    return view('search-product');
-});
+Route::get('/search', [ProductController::class, 'searchProduct']);
 
 Route::get('/manage-product', function () {
     return view('manage-product');
