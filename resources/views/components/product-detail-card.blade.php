@@ -12,15 +12,19 @@
                 <p class="text-gray-400 mr-16">Price</p>
                 <p class="ml-2">IDR {{$product->price}}</p>
             </div>
-            <form class="flex flex-col">
-                <div class="flex flex-row mb-5">
-                    <p class="text-gray-400 mr-16">Qty</p>
-                    <input type="number" name="qty" class="border rounded border-[1px] border-black/[10%] ml-5 w-[100%]">
-                </div>
-                <div>
-                    <button type="submit" class="border rounded border-[1px] border-black/[50%] px-3 py-1 text-black/[50%]">Purchase</button>
-                </div>
-            </form>
+            @auth
+                @if (Auth::user()->isAdmin === 0)
+                    <form class="flex flex-col">
+                        <div class="flex flex-row mb-5">
+                            <p class="text-gray-400 mr-16">Qty</p>
+                            <input type="number" name="qty" class="border rounded border-[1px] border-black/[10%] ml-5 w-[100%]">
+                        </div>
+                        <div>
+                            <button type="submit" class="border rounded border-[1px] border-black/[50%] px-3 py-1 text-black/[50%]">Purchase</button>
+                        </div>
+                    </form>
+                @endif
+            @endauth
         </div>
     </div>
 </div>

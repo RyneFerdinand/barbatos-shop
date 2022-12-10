@@ -17,7 +17,7 @@ class CategoryController extends Controller
 
     public function getCategoryById($id){
         $category = Category::find($id);
-        $products = $category->products()->paginate(8);
+        $products = $category->products()->paginate(10);
 
         return view('view-product-by-category', compact('category', 'products'));
     }
