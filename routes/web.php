@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\securityAdmin;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,10 +18,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [CategoryController::class, 'getAllCategories']);
-
-Route::get('/layout', function () {
-    return view('components.layout');
-});
 
 Route::get('/login', [UserController::class, 'loginPage']);
 
@@ -40,7 +37,7 @@ Route::get('/logout', [UserController::class, 'logout']);
 
 Route::get('/manage-product', function () {
     return view('manage-product');
-});
+})->middleware('securityAdmin');
 
 Route::get('/add-product', function () {
     return view('add-product');
