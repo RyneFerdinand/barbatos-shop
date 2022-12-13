@@ -50,7 +50,7 @@
                     </button>
                     <div class="dropdown-menu hidden bg-white w-[200px] z-50 pt-2" aria-labelledby="dropdownfeature">
                         @foreach ($categories as $category)
-                            <a class="mx-2 dropdown-item block w-full bg-white" href="{{url('/category/'.$category->id)}}">
+                            <a class="px-5 py-2 dropdown-item block w-full bg-white" href="{{url('/category/'.$category->id)}}">
                                 {{$category->name}}
                             </a>
                         @endforeach
@@ -76,7 +76,8 @@
                     </svg>
                     </button>
                     <div class="dropdown-menu hidden bg-white w-[200px] z-50 pt-2" aria-labelledby="dropdownfeature">
-                        <a href="{{url('/logout')}}" class="px-5 py-2">Logout</a>
+                        <a href="{{url('/logout')}}" class="px-5 py-2 dropdown-item block w-full">Logout</a>
+                        <a href="{{url('/profile')}}" class="px-5 py-2 dropdown-item block w-full">Profile</a>
                     </div>
                 </div>
                 </div>

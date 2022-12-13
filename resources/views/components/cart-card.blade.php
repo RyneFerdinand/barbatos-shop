@@ -11,7 +11,6 @@
         </div>
     </div>
     <div class="flex flex-row pr-3 pt-2">
-        <button class="bg-white text-rounded-md border-[2px] border-[rgb(255,0,0)] h-[40px] w-[40px] mt-2 rounded-md"><i
-                class="fa fa-trash text-[rgb(255,0,0)]"></i></button>
+        <button class="bg-white text-rounded-md border-[2px] border-[rgb(255,0,0)] h-[40px] w-[40px] mt-2 rounded-md fa fa-trash text-[rgb(255,0,0)] hover:bg-[rgb(255,0,0)] hover:text-white transition-all"></button>
     </div>
 </div>

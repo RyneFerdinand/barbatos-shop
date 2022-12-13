@@ -1,4 +1,4 @@
-@extends('components.layout');
+@extends('components.layout', ['categories' => ($categories = App\Models\Category::all())])
 
 @section('content')
     <div class="pt-10 w-2/4 mx-auto flex flex-row">

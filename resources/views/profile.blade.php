@@ -1,4 +1,4 @@
-@extends('components.layout');
+@extends('components.layout', ['categories' => ($categories = App\Models\Category::all())])
 
 @section('content')
     <div class="flex items-center h-[100vh] justify-center py-8">

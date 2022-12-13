@@ -33,7 +33,7 @@ Route::get('/product/{id}', [ProductController::class, 'getProductById']);
 
 Route::get('/search', [ProductController::class, 'searchProduct']);
 
-Route::get('/logout', [UserController::class, 'logout']);
+Route::get('/logout', [UserController::class, 'logout'])->middleware('securityUser');
 
 Route::get('/manage-product', function () {
     return view('manage-product');
@@ -50,12 +50,12 @@ Route::get('/update-product', function () {
 
 Route::get('/profile', function () {
     return view('profile');
-});
+})->middleware('securityUser');
 
 Route::get('/cart', function () {
     return view('cart');
-});
+})->middleware('securityMember');
 
 Route::get('/history', function () {
     return view('history');
-});
+})->middleware('securityMember');
