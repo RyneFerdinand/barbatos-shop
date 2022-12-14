@@ -13,7 +13,7 @@
                     <label class="mb-3 text-red-500 text-sm">{{$errors->first('name')}}</label>
                 @endif
                 <label class="mb-3">Email</label>
-                <input type="text" name="email" placeholder="Enter Your Email" class="border border-black/[25%] rounded px-3 py-1 mb-5">
+                <input type="email" name="email" placeholder="Enter Your Email" class="border border-black/[25%] rounded px-3 py-1 mb-5">
                 @if ($errors->has('email'))
                     <label class="mb-3 text-red-500 text-sm">{{$errors->first('email')}}</label>
                 @endif

@@ -8,7 +8,7 @@
             <form class="flex flex-col px-10 py-5" method="POST" enctype="multipart/form-data" action="{{url('/login')}}">
                 @csrf
                 <label class="mb-3">Email</label>
-                <input type="text" name="email" placeholder="Enter Your Email" class="border border-black/[25%] rounded px-3 py-1 mb-5" value={{Cookie::get('email') !== null ? Cookie::get('email') : ""}}>
+                <input type="email" name="email" placeholder="Enter Your Email" class="border border-black/[25%] rounded px-3 py-1 mb-5" value={{Cookie::get('email') !== null ? Cookie::get('email') : ""}}>
                 @if ($errors->has('email'))
                     <label class="mb-3 text-red-500 text-sm">{{$errors->first('email')}}</label>
                 @endif
