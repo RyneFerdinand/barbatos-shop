@@ -15,7 +15,7 @@ class TransactionDetailFactory extends Factory
      */
     public function definition()
     {
-        $product = Product::factory(1)->hasCategories(2)->create();
+        $product = Product::factory(1)->create();
         return [
             'product_id' => $product[0]->id,
             'qty' => $this->faker->numberBetween(1, 100)

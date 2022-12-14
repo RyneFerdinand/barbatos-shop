@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('detail', 1000);
             $table->integer('price');
             $table->string('photo', 255);
+            $table->foreignIdFor(Category::class);
             $table->timestamps();
         });
     }

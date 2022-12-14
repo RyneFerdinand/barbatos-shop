@@ -6,22 +6,40 @@
         <div class="flex flex-col bg-white">
             <p class="pl-4 py-2 text-black rounded-t border-b-[1px] border-gray-300">Update Product</p>
             <form class="flex flex-col px-4 py-4" method="POST" enctype="multipart/form-data" action="{{url('/update/'.$product->id)}}">
-                {{method_field('PUT')}}
                 @csrf
+                {{method_field('PUT')}}
                 <label>Name</label>
-                <input type="text" id="name" class="border-[1px] rounded-md px-2 py-1 mb-2" value="{{$product->name}}">
-                <label>Genre</label>
-                <select class="border-[1px] rounded-md px-2 py-1 mb-2">
-                    <option disabled selected>{{$product->cae}}</option>
-                    <option></option>
-                    <option></option>
+                <input type="text" id="name" name="name" class="border-[1px] rounded-md px-2 py-1 mb-2" value="{{$product->name}}">
+                @if ($errors->has('name'))
+                    <label class="mb-3 text-red-500 text-sm">{{$errors->first('name')}}</label>
+                @endif
+                <label>Category</label>
+                <select class="border-[1px] rounded-md px-2 py-1 mb-2" id="category" name="category">
+                    <option selected value="{{$product->category->id}}">{{$product->category->name}}</option>
+                    @foreach ($categories as $category)
+                        @if ($product->category->id != $category->id)
+                            <option value="{{$category->id}}">{{$category->name}}</option>
+                        @endif
+                    @endforeach
                 </select>
-                <label>Description</label>
-                <textarea id="description" class="border-[1px] rounded-md px-2 py-1 mb-2" rows="10">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, at nisi pariatur eos odit fugit, tempore quasi placeat accusantium, explicabo deserunt saepe beatae itaque deleniti earum. Voluptatum quos eius excepturi.</textarea>
+                @if ($errors->has('category'))
+                    <label class="mb-3 text-red-500 text-sm">{{$errors->first('category')}}</label>
+                @endif
+                <label>Detail</label>
+                <textarea name="detail" id="detail" class="border-[1px] rounded-md px-2 py-1 mb-2" rows="10">{{$product->detail}}</textarea>
+                @if ($errors->has('detail'))
+                    <label class="mb-3 text-red-500 text-sm">{{$errors->first('detail')}}</label>
+                @endif
                 <label>Price</label>
-                <input type="number" id="price" class="border-[1px] rounded-md px-2 py-1 mb-2" value="5555">
+                <input type="number" id="price" name="price" class="border-[1px] rounded-md px-2 py-1 mb-2" value="{{$product->price}}">
+                @if ($errors->has('price'))
+                    <label class="mb-3 text-red-500 text-sm">{{$errors->first('price')}}</label>
+                @endif
                 <label>Photo</label>
-                <input type="file" id="photo" class="border-[1px] rounded-md mb-2">
+                <input type="file" name="photo" id="photo" class="border-[1px] rounded-md mb-2" value="{{$product->photo}}">
+                @if ($errors->has('photo'))
+                    <label class="mb-3 text-red-500 text-sm">{{$errors->first('photo')}}</label>
+                @endif
                 <div class="flex flex-row">
                     <button class="text-gray-500 border-[1px] rounded-md border-gray-700 px-3 py-1">Update</button>
                 </div>

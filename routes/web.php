@@ -44,15 +44,15 @@ Route::delete('/cart/{userid}/{productid}', [CartController::class, 'deleteCart'
 
 Route::get('/manage-product', [ProductController::class, 'getAllProducts'])->middleware('securityAdmin');
 
-Route::get('/add-product', function () {
-    return view('add-product');
-});
+Route::get('/add-product', [CategoryController::class, 'getAllCategoriesForAddProduct'])->middleware('securityAdmin');
 
-Route::put('/update/{id}', [ProductController::class, 'updateProduct']);
+Route::post('add-product', [ProductController::class, 'addProduct'])->middleware('securityAdmin');
 
-Route::delete('/delete/{id}', [ProductController::class, 'deleteProduct']);
+Route::put('/update/{id}', [ProductController::class, 'updateProduct'])->middleware('securityAdmin');
 
-Route::get('/update/{id}', [ProductController::class, 'viewUpdateProduct']);
+Route::delete('/delete/{id}', [ProductController::class, 'deleteProduct'])->middleware('securityAdmin');
+
+Route::get('/update/{id}', [ProductController::class, 'viewUpdateProduct'])->middleware('securityAdmin');
 
 Route::get('/update-product', function () {
     return view('update-product');

@@ -14,7 +14,17 @@ class CartController extends Controller
         $cart->user_id = $userid;
         $cart->product_id = $productid;
 
-        $cart->save();
+        $temp = Cart::where('user_id', '=', $userid)->where('product_id', '=', $productid)->get();
+        if ($temp){
+            $temp +=$request->qty;
+        }
+        else {
+            $cart = new Cart();
+            $cart->qty = $request->qty;
+            $cart->user_id = $userid;
+            $cart->product_id = $productid;
+            $cart->save();
+        }
 
         return redirect('/');
     }

@@ -20,6 +20,7 @@ class ProductFactory extends Factory
             'detail' => $this->faker->paragraph(),
             'price' => $this->faker->numberBetween($min = 20000, $max = 2000000),
             'photo' => $this->faker->imageUrl($width = 200, $height = 200),
+            'category_id' => Category::factory(1)->create()[0]->id
         ];
     }
 }

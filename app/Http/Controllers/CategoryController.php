@@ -21,4 +21,10 @@ class CategoryController extends Controller
 
         return view('view-product-by-category', compact('category', 'products'));
     }
+
+    public function getAllCategoriesForAddProduct(){
+        $categories = Category::all();
+
+        return view('add-product', compact('categories'));
+    }
 }

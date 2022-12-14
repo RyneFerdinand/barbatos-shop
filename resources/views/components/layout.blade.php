@@ -35,7 +35,7 @@
 </head>
 
 <body class="bg-gray">
-    <header class="flex flex-row px-32 py-3 items-center bg-white w-[100vw] justify-between fixed top-0">
+    <header class="flex flex-row px-32 py-3 items-center bg-white w-[100vw] justify-between fixed top-0 z-50">
         <div class="flex flex-row items-center">
             <a href="{{url('/')}}" class="text-black text-xl mr-5">Barbatos Shop</a>
             <div class="flex justify-center">
