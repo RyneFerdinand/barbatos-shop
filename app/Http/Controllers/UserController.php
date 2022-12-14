@@ -92,13 +92,11 @@ class UserController extends Controller
         $email = $request->email;
         $password = $request->password;
 
-        if ($request->remember){
-            Cookie::queue('email', $email, 120);
-            Cookie::queue('password', $password, 120);
-        }
-
         if (Auth::attempt(['email' => $email, 'password' => $password])){
-            Session::put('usersession', ['email' => $email, 'password' => $password]);
+            if ($request->remember){
+                Cookie::queue('email', $email, 120);
+                Cookie::queue('password', $password, 120);
+            }
             return redirect('/');
         }
         return back()->withErrors(['error' => 'You filled in wrong email or password']);
