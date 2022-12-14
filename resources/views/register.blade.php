@@ -29,11 +29,11 @@
                 @endif
                 <label class="mb-1">Gender</label>
                 <div>
-                    <input type="radio" id="male" name="gender" value="male">
+                    <input type="radio" id="male" name="gender" value="Male">
                     <label for="male">Male</label>
                 </div>
                 <div class="mb-3">
-                    <input type="radio" id="female" name="gender" value="female">
+                    <input type="radio" id="female" name="gender" value="Female">
                     <label for="female">Female</label>
                 </div>
                 @if ($errors->has('gender'))

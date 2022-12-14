@@ -18,7 +18,7 @@ class UserFactory extends Factory
             'name' => $this->faker->name(),
             'isAdmin' => $this->faker->boolean(5),
             'email' => $this->faker->unique()->safeEmail(),
-            'gender' => $this->faker->randomElement(['male', 'female']),
+            'gender' => $this->faker->randomElement(['Male', 'Female']),
             'password' => bcrypt('secret'),
             'dob' => $this->faker->date($format='Y-m-d', $max = 'now'),
             'country' => $this->faker->country(),

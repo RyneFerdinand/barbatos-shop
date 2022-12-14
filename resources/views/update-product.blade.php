@@ -5,12 +5,14 @@
         <a href="#" class="bg-gray-700 w-[10%] text-white p-2 rounded-md mb-2"><i class="fa fa-backward text-white"></i> Back</a>
         <div class="flex flex-col bg-white">
             <p class="pl-4 py-2 text-black rounded-t border-b-[1px] border-gray-300">Update Product</p>
-            <form class="flex flex-col px-4 py-4">
+            <form class="flex flex-col px-4 py-4" method="POST" enctype="multipart/form-data" action="{{url('/update/'.$product->id)}}">
+                {{method_field('PUT')}}
+                @csrf
                 <label>Name</label>
-                <input type="text" id="name" class="border-[1px] rounded-md px-2 py-1 mb-2" value="Azaine Oil Free Brightening Daily Moisturizer">
+                <input type="text" id="name" class="border-[1px] rounded-md px-2 py-1 mb-2" value="{{$product->name}}">
                 <label>Genre</label>
                 <select class="border-[1px] rounded-md px-2 py-1 mb-2">
-                    <option disabled selected>Beauty</option>
+                    <option disabled selected>{{$product->cae}}</option>
                     <option></option>
                     <option></option>
                 </select>

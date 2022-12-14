@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
@@ -33,16 +34,25 @@ Route::get('/product/{id}', [ProductController::class, 'getProductById']);
 
 Route::get('/search', [ProductController::class, 'searchProduct']);
 
+Route::get('/search-admin', [ProductController::class, 'searchProductForAdmin']);
+
 Route::get('/logout', [UserController::class, 'logout'])->middleware('securityUser');
 
-Route::get('/manage-product', function () {
-    return view('manage-product');
-})->middleware('securityAdmin');
+Route::post('/cart/{userid}/{productid}', [CartController::class, 'addCart']);
+
+Route::delete('/cart/{userid}/{productid}', [CartController::class, 'deleteCart']);
+
+Route::get('/manage-product', [ProductController::class, 'getAllProducts'])->middleware('securityAdmin');
 
 Route::get('/add-product', function () {
     return view('add-product');
 });
 
+Route::put('/update/{id}', [ProductController::class, 'updateProduct']);
+
+Route::delete('/delete/{id}', [ProductController::class, 'deleteProduct']);
+
+Route::get('/update/{id}', [ProductController::class, 'viewUpdateProduct']);
 
 Route::get('/update-product', function () {
     return view('update-product');

@@ -9,9 +9,9 @@ class ProductController extends Controller
 {
     //
     public function getAllProducts(){
-        $products = Product::all();
+        $products = Product::paginate(10);
 
-        return view('home', compact('products'));
+        return view('manage-product', compact('products'));
     }
 
     public function getProductById($id){
@@ -25,5 +25,31 @@ class ProductController extends Controller
         $products = Product::where('name', 'LIKE', "%$query%")->get();
 
         return view('search-product', compact('products', 'query'));
+    }
+
+    public function searchProductForAdmin(Request $request){
+        $query = $request->query('query');
+        $products = Product::where('name', 'LIKE', "%$query%")->paginate(10);
+
+        return view('manage-product', compact('products', 'query'));
+    }
+
+    public function deleteProduct($id){
+        $product = Product::find($id);
+
+        $product->delete();
+
+        return redirect()->back();
+    }
+
+    public function updateProduct($id){
+        $product = Product::find($id);
+
+    }
+
+    public function viewUpdateProduct($id){
+        $product = Product::find($id);
+
+        return view('manage-product', compact('product'));
     }
 }
