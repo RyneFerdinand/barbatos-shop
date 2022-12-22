@@ -6,7 +6,9 @@
             <form method="GET" enctype="multipart/form-data" action="{{url('/search-admin')}}" class="flex flex-row items-stretch">
                 @csrf
                 <input type="text" class="bg-white px-4 outline-none" placeholder="Product Name" value="" name="query">
-                <i class="fa fa-search bg-gray-700 text-white p-3 rounded-r-md"></i>
+                <button type="submit">
+                    <i class="fa fa-search bg-gray-700 text-white p-3 rounded-r-md"></i>
+                </button>
             </form>
             <form method="GET" enctype="multipart/form-data" action="{{url('/add-product')}}">
                 <button class="bg-gray-700 text-white rounded-md px-3 py-2">Add Product <i

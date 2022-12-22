@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -40,6 +41,10 @@ class ProductController extends Controller
     public function destroy($id){
         $product = Product::find($id);
 
+        if (File::exists(public_path($product->photo))){
+            File::delete(public_path($product->photo));
+        }
+
         $product->delete();
 
         return redirect()->back();
@@ -71,6 +76,11 @@ class ProductController extends Controller
         }
 
         $product = Product::find($id);
+
+        if (File::exists(public_path($product->photo))){
+            File::delete(public_path($product->photo));
+        }
+
         $product->name = $request->name;
         $category = Category::find($request->category);
         $product->detail = $request->detail;
