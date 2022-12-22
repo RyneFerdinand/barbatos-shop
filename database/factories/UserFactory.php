@@ -16,7 +16,6 @@ class UserFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'isAdmin' => $this->faker->boolean(5),
             'email' => $this->faker->unique()->safeEmail(),
             'gender' => $this->faker->randomElement(['Male', 'Female']),
             'password' => bcrypt('secret'),

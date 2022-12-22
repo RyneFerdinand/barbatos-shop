@@ -3,6 +3,7 @@
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\securityAdmin;
 use Illuminate\Support\Facades\Route;
@@ -18,54 +19,47 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [CategoryController::class, 'getAllCategories']);
+Route::controller(CategoryController::class)->group(function (){
+    Route::get('/', 'index');
+    Route::get('/category/{id}', 'show');
+    Route::get('/add-product', 'getAllCategoriesForAddProduct')->middleware('securityAdmin');
+});
 
-Route::get('/login', [UserController::class, 'loginPage']);
+Route::controller(UserController::class)->group(function (){
+    Route::get('/login', 'loginPage');
+    Route::get('/register', 'registerPage');
+    Route::post('/login', 'login');
+    Route::post('/register', 'register');
+    Route::get('/logout', 'logout')->middleware('securityUser');
+});
 
-Route::get('/register', [UserController::class, 'registerPage']);
+Route::controller(ProductController::class)->group(function (){
+    Route::get('/product/{id}', 'show');
+    Route::get('/search', 'searchProduct');
+    Route::get('/search-admin', 'searchProductForAdmin');
+    Route::middleware(['securityAdmin'])->group(function(){
+        Route::get('/manage-product', 'index');
+        Route::post('/product', 'store');
+        Route::put('/product/{id}', 'update');
+        Route::delete('/product/{id}', 'destroy');
+        Route::get('/update-product/{id}', 'viewUpdateProduct');
+    });
+});
 
-Route::post('/login', [UserController::class, 'login']);
+Route::controller(CartController::class)->group(function (){
+    Route::middleware(['securityMember'])->group(function(){
+        Route::delete('/product/cart/{product_id}', 'destroy');
+        Route::post('/product/cart/{product_id}', 'store');
+        Route::get('/cart', 'index');
+    });
+});
 
-Route::post('/register', [UserController::class, 'register']);
-
-Route::get('/category/{id}', [CategoryController::class, 'getCategoryById']);
-
-Route::get('/product/{id}', [ProductController::class, 'getProductById']);
-
-Route::get('/search', [ProductController::class, 'searchProduct']);
-
-Route::get('/search-admin', [ProductController::class, 'searchProductForAdmin']);
-
-Route::get('/logout', [UserController::class, 'logout'])->middleware('securityUser');
-
-Route::post('/cart/{userid}/{productid}', [CartController::class, 'addCart']);
-
-Route::delete('/cart/{userid}/{productid}', [CartController::class, 'deleteCart']);
-
-Route::get('/manage-product', [ProductController::class, 'getAllProducts'])->middleware('securityAdmin');
-
-Route::get('/add-product', [CategoryController::class, 'getAllCategoriesForAddProduct'])->middleware('securityAdmin');
-
-Route::post('add-product', [ProductController::class, 'addProduct'])->middleware('securityAdmin');
-
-Route::put('/update/{id}', [ProductController::class, 'updateProduct'])->middleware('securityAdmin');
-
-Route::delete('/delete/{id}', [ProductController::class, 'deleteProduct'])->middleware('securityAdmin');
-
-Route::get('/update/{id}', [ProductController::class, 'viewUpdateProduct'])->middleware('securityAdmin');
-
-Route::get('/update-product', function () {
-    return view('update-product');
+Route::controller(TransactionController::class)->group(function(){
+    Route::get('/history', 'index')->middleware('securityMember');
+    Route::post('/product/transaction', 'store');
 });
 
 Route::get('/profile', function () {
     return view('profile');
 })->middleware('securityUser');
 
-Route::get('/cart', function () {
-    return view('cart');
-})->middleware('securityMember');
-
-Route::get('/history', function () {
-    return view('history');
-})->middleware('securityMember');

@@ -9,13 +9,13 @@ use Illuminate\Pagination\Paginator;
 class CategoryController extends Controller
 {
     //
-    public function getAllCategories(){
+    public function index(){
         $categories = Category::all();
 
         return view('home', compact('categories'));
     }
 
-    public function getCategoryById($id){
+    public function show($id){
         $category = Category::find($id);
         $products = $category->products()->paginate(10);
 

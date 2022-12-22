@@ -1,7 +1,7 @@
 @props(['product'])
 <div class="flex flex-col justify-center items-center font-montserrat h-[100vh]">
-    <div class="bg-white flex flex-row items-center justify-center w-[50vw] drop-shadow rounded">
-        <img src="{{$product->photo}}" class="mx-2 my-5 border-[1px] border-black/[10%]">
+    <div class="bg-white flex flex-row items-center w-[50vw] drop-shadow rounded">
+        <img src="{{$product->photo}}" class="mx-2 my-5 border-[1px] border-black/[10%] w-[200px] h-[200px]">
         <div class="flex flex-col px-2 py-5 mb-3">
             <p class="font-bold text-2xl mb-2">{{$product->name}}</p>
             <div class="flex flex-row">
@@ -14,14 +14,15 @@
             </div>
             @auth
                 @if (Auth::user()->isAdmin === 0)
-                    <form method="POST" action="{{url('/cart/'.Auth::user()->id.'/'.$product->id)}}" enctype="multipart/form-data" class="flex flex-col">
+                    <form method="POST" action="{{url('/product/cart/'.$product->id)}}" enctype="multipart/form-data" class="flex flex-col">
                         @csrf
                         <div class="flex flex-row mb-5">
                             <p class="text-gray-400 mr-16">Qty</p>
                             <input type="number" name="qty" class="border rounded border-[1px] border-black/[10%] ml-5 w-[100%]">
                         </div>
                         <div>
-                        <button type="submit" class="border rounded border-[1px] border-black/[50%] px-3 py-1 text-black/[50%]">Purchase</button>
+                            <button
+                            class="transtion-all bg-transparent text-green-500 font-semibold py-2 px-4 border border-green-500 rounded hover:bg-green-500 hover:text-white">Purchase</button>
                         </div>
                     </form>
                 @endif

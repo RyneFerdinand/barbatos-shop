@@ -75,9 +75,9 @@
                         <path fill="currentColor" d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path>
                     </svg>
                     </button>
-                    <div class="dropdown-menu hidden bg-white w-[200px] z-50 pt-2" aria-labelledby="dropdownfeature">
-                        <a href="{{url('/profile')}}" class="px-5 py-2 dropdown-item block w-full">Profile</a>
-                        <a href="{{url('/logout')}}" class="px-5 py-2 dropdown-item block w-full">Logout</a>
+                    <div class="rounded dropdown-menu hidden bg-white w-[200px] z-50 pt-2 ease-in transition-all origin-center duration-300" aria-labelledby="dropdownfeature">
+                        <a href="{{url('/profile')}}" class="px-5 py-2 block w-full">Profile</a>
+                        <a href="{{url('/logout')}}" class="px-5 py-2 block w-full">Logout</a>
                     </div>
                 </div>
                 </div>

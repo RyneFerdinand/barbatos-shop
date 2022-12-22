@@ -11,13 +11,13 @@ use Illuminate\Support\Facades\Validator;
 class ProductController extends Controller
 {
     //
-    public function getAllProducts(){
+    public function index(){
         $products = Product::paginate(10);
 
         return view('manage-product', compact('products'));
     }
 
-    public function getProductById($id){
+    public function show($id){
         $product = Product::find($id);
 
         return view('product-detail', compact('product'));
@@ -37,7 +37,7 @@ class ProductController extends Controller
         return view('manage-product', compact('products', 'query'));
     }
 
-    public function deleteProduct($id){
+    public function destroy($id){
         $product = Product::find($id);
 
         $product->delete();
@@ -45,7 +45,7 @@ class ProductController extends Controller
         return redirect()->back();
     }
 
-    public function updateProduct(Request $request, $id){
+    public function update(Request $request, $id){
         $rules = ([
             'name' => 'required',
             'category' => 'required',
@@ -96,7 +96,7 @@ class ProductController extends Controller
         return view('update-product', compact('product', 'categories'));
     }
 
-    public function addProduct(Request $request){
+    public function store(Request $request){
 
         $rules = ([
             'name' => 'required',

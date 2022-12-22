@@ -2,10 +2,10 @@
 
 @section('content')
     <div class="flex flex-col w-2/4 mx-auto py-8">
-        <a href="#" class="bg-gray-700 w-[10%] text-white p-2 rounded-md mb-2"><i class="fa fa-backward text-white"></i> Back</a>
+        <a href="{{url('/manage-product')}}" class="bg-gray-700 w-[10%] text-white p-2 rounded-md mb-2"><i class="fa fa-backward text-white"></i> Back</a>
         <div class="flex flex-col bg-white">
             <p class="pl-4 py-2 text-black rounded-t border-b-[1px] border-gray-300">Update Product</p>
-            <form class="flex flex-col px-4 py-4" method="POST" enctype="multipart/form-data" action="{{url('/update/'.$product->id)}}">
+            <form class="flex flex-col px-4 py-4" method="POST" enctype="multipart/form-data" action="{{url('/product/'.$product->id)}}">
                 @csrf
                 {{method_field('PUT')}}
                 <label>Name</label>

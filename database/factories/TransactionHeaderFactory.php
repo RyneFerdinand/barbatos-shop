@@ -15,7 +15,6 @@ class TransactionHeaderFactory extends Factory
     public function definition()
     {
         return [
-            'transaction_date' => $this->faker->date($format='Y-m-d', $max = 'now'),
             'user_id' => User::factory(1)->create()[0]->id
         ];
     }

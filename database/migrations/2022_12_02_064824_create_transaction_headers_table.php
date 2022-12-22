@@ -17,7 +17,6 @@ class CreateTransactionHeadersTable extends Migration
         Schema::create('transaction_headers', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class);
-            $table->date('transaction_date');
             $table->timestamps();
         });
     }
