@@ -12,36 +12,41 @@ use Illuminate\Support\Facades\Validator;
 class ProductController extends Controller
 {
     //
-    public function index(){
+    public function index()
+    {
         $products = Product::paginate(10);
 
         return view('manage-product', compact('products'));
     }
 
-    public function show($id){
+    public function show($id)
+    {
         $product = Product::find($id);
 
         return view('product-detail', compact('product'));
     }
 
-    public function searchProduct(Request $request){
+    public function searchProduct(Request $request)
+    {
         $query = $request->query('query');
         $products = Product::where('name', 'LIKE', "%$query%")->get();
 
         return view('search-product', compact('products', 'query'));
     }
 
-    public function searchProductForAdmin(Request $request){
+    public function searchProductForAdmin(Request $request)
+    {
         $query = $request->query('query');
         $products = Product::where('name', 'LIKE', "%$query%")->paginate(10);
 
         return view('manage-product', compact('products', 'query'));
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         $product = Product::find($id);
 
-        if (File::exists(public_path($product->photo))){
+        if (File::exists(public_path($product->photo))) {
             File::delete(public_path($product->photo));
         }
 
@@ -50,7 +55,8 @@ class ProductController extends Controller
         return redirect()->back();
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         $rules = ([
             'name' => 'required',
             'category' => 'required',
@@ -71,13 +77,13 @@ class ProductController extends Controller
 
         $validator = Validator::make($request->all(), $rules, $messages);
 
-        if ($validator->fails()){
+        if ($validator->fails()) {
             return back()->withErrors($validator);
         }
 
         $product = Product::find($id);
 
-        if (File::exists(public_path($product->photo))){
+        if (File::exists(public_path($product->photo))) {
             File::delete(public_path($product->photo));
         }
 
@@ -88,25 +94,27 @@ class ProductController extends Controller
         $product->price = $request->price;
 
         $ext = $request->file('photo')->extension();
-        $photo = time().'.'.$ext;
+        $photo = time() . '.' . $ext;
 
         Storage::putFileAs('/public/images', $request->photo, $photo);
 
-        $product->photo = '/storage/images/'.$photo;
+        $product->photo = '/storage/images/' . $photo;
 
         $product->save();
 
         return redirect('/manage-product');
     }
 
-    public function viewUpdateProduct($id){
+    public function viewUpdateProduct($id)
+    {
         $product = Product::find($id);
         $categories = Category::all();
 
         return view('update-product', compact('product', 'categories'));
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
 
         $rules = ([
             'name' => 'required',
@@ -128,7 +136,7 @@ class ProductController extends Controller
 
         $validator = Validator::make($request->all(), $rules, $messages);
 
-        if ($validator->fails()){
+        if ($validator->fails()) {
             return back()->withErrors($validator);
         }
 
@@ -141,11 +149,11 @@ class ProductController extends Controller
         $product->price = $request->price;
 
         $ext = $request->file('photo')->extension();
-        $photo = time().'.'.$ext;
+        $photo = time() . '.' . $ext;
 
         Storage::putFileAs('/public/images', $request->photo, $photo);
 
-        $product->photo = '/storage/images/'.$photo;
+        $product->photo = '/storage/images/' . $photo;
 
         $product->save();
 

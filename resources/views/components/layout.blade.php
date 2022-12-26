@@ -37,55 +37,70 @@
 <body class="bg-gray">
     <header class="flex flex-row px-32 py-3 items-center bg-white w-[100vw] justify-between fixed top-0 z-50">
         <div class="flex flex-row items-center">
-            <a href="{{url('/')}}" class="text-black text-xl mr-5">Barbatos Shop</a>
+            <a href="{{ url('/') }}" class="text-black text-xl mr-5">Barbatos Shop</a>
             <div class="flex justify-center">
                 <div>
-                  <div class="dropdown relative">
-                    <button
-                      class="dropdown-toggle flex flex-row items-center" type="button" id="dropdownfeature" data-bs-toggle="dropdown">
-                      Category
-                      <svg data-prefix="fas" data-icon="caret-down" class="w-2 ml-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
-                        <path fill="currentColor" d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path>
-                      </svg>
-                    </button>
-                    <div class="dropdown-menu hidden bg-white w-[200px] z-50 pt-2" aria-labelledby="dropdownfeature">
-                        @foreach ($categories as $category)
-                            <a class="px-5 py-2 dropdown-item block w-full bg-white" href="{{url('/category/'.$category->id)}}">
-                                {{$category->name}}
-                            </a>
-                        @endforeach
+                    <div class="dropdown relative">
+                        <button class="dropdown-toggle flex flex-row items-center" type="button" id="dropdownfeature"
+                            data-bs-toggle="dropdown">
+                            Category
+                            <svg data-prefix="fas" data-icon="caret-down" class="w-2 ml-3"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+                                <path fill="currentColor"
+                                    d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z">
+                                </path>
+                            </svg>
+                        </button>
+                        <div class="dropdown-menu hidden bg-white w-[200px] z-50 pt-2"
+                            aria-labelledby="dropdownfeature">
+                            @foreach ($categories as $category)
+                                <a class="px-5 py-2 dropdown-item block w-full bg-white"
+                                    href="{{ url('/category/' . $category->id) }}">
+                                    {{ $category->name }}
+                                </a>
+                            @endforeach
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
-              @auth
+            </div>
+            @auth
                 @if (Auth::user()->isAdmin === 1)
-                    <a href="{{url('/manage-product')}}" class="text-black text-l mr-5 ml-5">Manage Product</a>
+                    <a href="{{ url('/manage-product') }}" class="text-black text-l mr-5 ml-5">Manage Product</a>
                 @endif
-              @endauth
+            @endauth
         </div>
         @auth
-            <div class="flex justify-center">
-                <div>
+            <div class="flex justify-center gap-4">
+                @if (Auth::check() && Auth::user()->isAdmin == 0)
+                    <a href="{{ url('/cart') }}">
+                        <i class="fa fa-shopping-cart text-xl"></i>
+                    </a>
+                @endif
                 <div class="dropdown relative">
-                    <button
-                    class="dropdown-toggle flex flex-row items-center" type="button" id="dropdownfeature" data-bs-toggle="dropdown">
-                    {{Auth::user()->name}}
-                    <svg data-prefix="fas" data-icon="caret-down" class="w-2 ml-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
-                        <path fill="currentColor" d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path>
-                    </svg>
+                    <button class="dropdown-toggle flex flex-row items-center" type="button" id="dropdownfeature"
+                        data-bs-toggle="dropdown">
+                        {{ Auth::user()->name }}
+                        <svg data-prefix="fas" data-icon="caret-down" class="w-2 ml-3" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 400 400">
+                            <path fill="currentColor"
+                                d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z">
+                            </path>
+                        </svg>
                     </button>
-                    <div class="rounded dropdown-menu hidden bg-white w-[200px] z-50 pt-2 ease-in transition-all origin-center duration-300" aria-labelledby="dropdownfeature">
-                        <a href="{{url('/profile')}}" class="px-5 py-2 block w-full">Profile</a>
-                        <a href="{{url('/logout')}}" class="px-5 py-2 block w-full">Logout</a>
+                    <div class="rounded dropdown-menu hidden bg-white w-[200px] z-50 pt-2 ease-in transition-all origin-center duration-300"
+                        aria-labelledby="dropdownfeature">
+                        <a href="{{ url('/profile') }}" class="px-5 py-2 block w-full">Profile</a>
+                        @if (Auth::check() && Auth::user()->isAdmin == 0)
+                            <a href="{{ url('/history') }}" class="px-5 py-2 block w-full">History</a>
+                        @endif
+                        <a href="{{ url('/logout') }}" class="px-5 py-2 block w-full">Logout</a>
                     </div>
-                </div>
                 </div>
             </div>
         @else
             <div>
-                <a href="{{url('/login')}}" class="mr-5 text-black/[50%]">Login</a>
-                <a href="{{url('/register')}}" class="text-black/[50%]">Register</a>
+                <a href="{{ url('/login') }}" class="mr-5 text-black/[50%]">Login</a>
+                <a href="{{ url('/register') }}" class="text-black/[50%]">Register</a>
             </div>
         @endauth
     </header>

@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Validator;
 class UserController extends Controller
 {
     //
-    public function register(Request $request){
+    public function register(Request $request)
+    {
         $today = Carbon::today();
 
         $today = Carbon::createFromFormat('Y-m-d H:i:s', $today)->format('m/d/Y');
@@ -23,7 +24,7 @@ class UserController extends Controller
             'password' => 'required|alpha_num|min:8',
             'confirmpassword' => 'required|same:password',
             'gender' => 'required',
-            'dob' => 'required|before:'.$today.'|after:01/01/1900',
+            'dob' => 'required|before:' . $today . '|after:01/01/1900',
             'country' => 'required'
         ]);
 
@@ -41,13 +42,13 @@ class UserController extends Controller
             'password.alpha_num' => 'Your password should be alphanumeric!',
             'password.min' => 'Your password should be at least 8 characters!',
             'confirmpassword.same' => 'Your confirm password needs to be the same as your password!',
-            'dob.before' => 'Your date of birth needs to be before'.$today.'!',
+            'dob.before' => 'Your date of birth needs to be before ' . $today . '!',
             'dob.after' => 'Your date of birth needs to be after 01//01/1900!',
         ]);
 
         $validator = Validator::make($request->all(), $rules, $messages);
 
-        if ($validator->fails()){
+        if ($validator->fails()) {
             return back()->withErrors($validator);
         }
 
@@ -70,7 +71,8 @@ class UserController extends Controller
         return redirect('/login');
     }
 
-    public function login(Request $request){
+    public function login(Request $request)
+    {
         $rules = [
             'email' => 'required',
             'password' => 'required'
@@ -83,7 +85,7 @@ class UserController extends Controller
 
         $validator = Validator::make($request->all(), $rules, $messages);
 
-        if ($validator->fails()){
+        if ($validator->fails()) {
             return back()->withErrors($validator);
         }
 
@@ -92,8 +94,8 @@ class UserController extends Controller
         $email = $request->email;
         $password = $request->password;
 
-        if (Auth::attempt(['email' => $email, 'password' => $password])){
-            if ($request->remember){
+        if (Auth::attempt(['email' => $email, 'password' => $password])) {
+            if ($request->remember) {
                 Cookie::queue('email', $email, 120);
                 Cookie::queue('password', $password, 120);
             }
@@ -102,15 +104,18 @@ class UserController extends Controller
         return back()->withErrors(['error' => 'You filled in wrong email or password']);
     }
 
-    public function registerPage(){
+    public function registerPage()
+    {
         return view('register');
     }
 
-    public function loginPage(){
+    public function loginPage()
+    {
         return view('login');
     }
 
-    public function logout(){
+    public function logout()
+    {
         Auth::logout();
         return redirect('/login');
     }

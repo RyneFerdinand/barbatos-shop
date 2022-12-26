@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
     {
         User::factory(2)->hasCarts(2)->create();
         TransactionHeader::factory(2)->hasDetails(2)->create();
-        Category::factory(2)->hasProducts(20)->create();
+        Category::factory(2)->hasProducts(30)->create();
 
         User::insert([
             'name' => 'admin',

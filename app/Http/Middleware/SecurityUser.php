@@ -17,7 +17,7 @@ class SecurityUser
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Auth::check()){
+        if (!Auth::check()) {
             return abort(401);
         }
         return $next($request);

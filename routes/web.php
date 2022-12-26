@@ -5,7 +5,6 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
-use App\Http\Middleware\securityAdmin;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,25 +18,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::controller(CategoryController::class)->group(function (){
+Route::controller(CategoryController::class)->group(function () {
     Route::get('/', 'index');
     Route::get('/category/{id}', 'show');
     Route::get('/add-product', 'getAllCategoriesForAddProduct')->middleware('securityAdmin');
 });
 
-Route::controller(UserController::class)->group(function (){
-    Route::get('/login', 'loginPage');
-    Route::get('/register', 'registerPage');
-    Route::post('/login', 'login');
-    Route::post('/register', 'register');
+Route::controller(UserController::class)->group(function () {
+    Route::get('/login', 'loginPage')->middleware('securityGuest');
+    Route::get('/register', 'registerPage')->middleware('securityGuest');
+    Route::post('/login', 'login')->middleware('securityGuest');
+    Route::post('/register', 'register')->middleware('securityGuest');
     Route::get('/logout', 'logout')->middleware('securityUser');
 });
 
-Route::controller(ProductController::class)->group(function (){
+Route::controller(ProductController::class)->group(function () {
     Route::get('/product/{id}', 'show');
     Route::get('/search', 'searchProduct');
-    Route::get('/search-admin', 'searchProductForAdmin');
-    Route::middleware(['securityAdmin'])->group(function(){
+    Route::middleware(['securityAdmin'])->group(function () {
+        Route::get('/search-admin', 'searchProductForAdmin');
         Route::get('/manage-product', 'index');
         Route::post('/product', 'store');
         Route::put('/product/{id}', 'update');
@@ -46,15 +45,15 @@ Route::controller(ProductController::class)->group(function (){
     });
 });
 
-Route::controller(CartController::class)->group(function (){
-    Route::middleware(['securityMember'])->group(function(){
+Route::controller(CartController::class)->group(function () {
+    Route::middleware(['securityMember'])->group(function () {
         Route::delete('/product/cart/{product_id}', 'destroy');
         Route::post('/product/cart/{product_id}', 'store');
         Route::get('/cart', 'index');
     });
 });
 
-Route::controller(TransactionController::class)->group(function(){
+Route::controller(TransactionController::class)->group(function () {
     Route::get('/history', 'index')->middleware('securityMember');
     Route::post('/product/transaction', 'store');
 });
@@ -62,4 +61,3 @@ Route::controller(TransactionController::class)->group(function(){
 Route::get('/profile', function () {
     return view('profile');
 })->middleware('securityUser');
-
