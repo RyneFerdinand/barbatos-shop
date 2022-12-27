@@ -19,14 +19,29 @@
     <script>
         tailwind.config = {
             theme: {
-                extend: {
-                    colors: {
-                        gray: '#ECECEC'
-                    }
+                colors: {
+                    gray: '#ECECEC',
+                    success: '#4BB543'
                 },
                 fontFamily: {
                     'montserrat': ['Montserrat', 'sans-serif'],
                     'poppins': ['Poppins', 'sans-serif']
+                },
+                extend: {
+                    keyframes: {
+                        transparenting: {
+                            '0%, 75%': {
+                                opacity: 1
+                            },
+                            '100%': {
+                                opacity: 0,
+                            },
+                        }
+                    },
+                    animation: {
+                        'slowly-transparent': 'transparenting 3s ease-in-out forwards'
+                    },
+
                 }
             }
         }
@@ -104,6 +119,13 @@
             </div>
         @endauth
     </header>
+    @if (session()->has('success'))
+        <div class="success-message fixed w-full flex top-14 justify-center animate-slowly-transparent opacity-0">
+            <p class="bg-success text-white text-lg font-bold rounded-md px-48 py-3">
+                {{ session('success') }}
+            </p>
+        </div>
+    @endif
 
     <main class="mt-6">
         @yield('content')

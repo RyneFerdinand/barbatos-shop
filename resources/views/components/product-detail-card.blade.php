@@ -18,14 +18,20 @@
                     <form method="POST" action="{{ url('/product/cart/' . $product->id) }}" enctype="multipart/form-data"
                         class="flex flex-col">
                         @csrf
-                        <div class="flex flex-row mb-5">
-                            <p class="text-gray-400 mr-16">Qty</p>
-                            <input type="number" name="qty"
-                                class="border rounded border-[1px] border-black/[10%] ml-5 w-[100%]">
+                        <div class="flex flex-col">
+                            <div class="flex flex-row mb-5">
+                                <p class="text-gray-400 mr-16">Qty</p>
+                                <input type="number" name="qty"
+                                    class="border rounded border-[1px] border-black/[10%] ml-5 w-[100%]">
+                            </div>
+                            @if ($errors->has('qty'))
+                                <label class="mb-3 text-red-500 text-sm">{{ $errors->first('qty') }}</label>
+                            @endif
+
                         </div>
                         <div>
                             <button
-                                class="transtion-all bg-transparent text-green-500 font-semibold py-2 px-4 border border-green-500 rounded hover:bg-green-500 hover:text-white">Purchase</button>
+                                class="transtion-all bg-transparent text-success font-semibold py-2 px-4 border border-success rounded hover:bg-success hover:text-white">Purchase</button>
                         </div>
                     </form>
                 @endif

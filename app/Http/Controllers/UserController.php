@@ -68,7 +68,7 @@ class UserController extends Controller
         $user->country = $country;
         $user->save();
 
-        return redirect('/login');
+        return redirect('/login')->with('success', 'Registered in successfully!');;
     }
 
     public function login(Request $request)
@@ -99,7 +99,7 @@ class UserController extends Controller
                 Cookie::queue('email', $email, 120);
                 Cookie::queue('password', $password, 120);
             }
-            return redirect('/');
+            return redirect('/')->with('success', 'Logged in successfully!');
         }
         return back()->withErrors(['error' => 'You filled in wrong email or password']);
     }

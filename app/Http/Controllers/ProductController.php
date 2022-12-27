@@ -52,7 +52,7 @@ class ProductController extends Controller
 
         $product->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Product deleted successfully!');;
     }
 
     public function update(Request $request, $id)
@@ -102,7 +102,7 @@ class ProductController extends Controller
 
         $product->save();
 
-        return redirect('/manage-product');
+        return redirect('/manage-product')->with('success', 'Product updated successfully!');;
     }
 
     public function viewUpdateProduct($id)
@@ -157,6 +157,6 @@ class ProductController extends Controller
 
         $product->save();
 
-        return redirect('/manage-product');
+        return redirect('/manage-product')->with('success', 'Product created successfully!');;
     }
 }
