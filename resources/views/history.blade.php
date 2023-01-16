@@ -1,7 +1,7 @@
 @extends('components.layout', ['categories' => ($categories = App\Models\Category::all())])
 
 @section('content')
-    <div class="w-1/2 mx-auto my-20">
+    <div class="w-10/12 max-w-2xl mx-auto my-20">
         @foreach ($transactions as $transaction)
             <div onclick="dropdown({{ $transaction->id }})"
                 class="text-blue-600 bg-blue-100 font-medium px-4 py-3 rounded-md flex items-center justify-between cursor-pointer mt-5">

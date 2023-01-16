@@ -1,9 +1,9 @@
 @props(['product'])
 <div class="flex flex-col justify-center items-center font-montserrat h-[100vh]">
-    <div class="bg-white flex flex-row items-center w-[50vw] drop-shadow rounded">
+    <div class="bg-white flex flex-col md:flex-row items-center w-10/12 max-w-5xl drop-shadow rounded">
         <img src="{{ $product->photo }}"
             class="object-cover mx-2 my-5 border-[1px] border-black/[10%] w-[200px] h-[200px]">
-        <div class="flex flex-col px-2 py-5 mb-3">
+        <div class="flex flex-col px-2 py-5 mb-3 w-full">
             <p class="font-bold text-2xl mb-2">{{ $product->name }}</p>
             <div class="flex flex-row">
                 <p class="text-gray-400 mr-16">Detail</p>
@@ -16,7 +16,7 @@
             @auth
                 @if (Auth::user()->isAdmin === 0)
                     <form method="POST" action="{{ url('/product/cart/' . $product->id) }}" enctype="multipart/form-data"
-                        class="flex flex-col">
+                        class="flex flex-col w-full">
                         @csrf
                         <div class="flex flex-col">
                             <div class="flex flex-row mb-5">
@@ -27,9 +27,8 @@
                             @if ($errors->has('qty'))
                                 <label class="mb-3 text-red-500 text-sm">{{ $errors->first('qty') }}</label>
                             @endif
-
                         </div>
-                        <div>
+                        <div class="mx-auto">
                             <button
                                 class="transtion-all bg-transparent text-success font-semibold py-2 px-4 border border-success rounded hover:bg-success hover:text-white">Purchase</button>
                         </div>

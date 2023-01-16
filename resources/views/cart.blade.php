@@ -1,7 +1,7 @@
 @extends('components.layout', ['categories' => ($categories = App\Models\Category::all())])
 
 @section('content')
-    <div class="w-1/3 mx-auto my-24">
+    <div class="w-10/12 mx-auto my-24 max-w-2xl">
         <?php
         $totalPrice = 0;
         ?>

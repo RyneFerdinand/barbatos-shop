@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="flex items-center justify-center w-[100vw] bg-black/[5%] font-montserrat py-8 pt-16">
-        <div class="flex flex-col bg-white w-[30vw]">
+        <div class="flex flex-col bg-white w-10/12 max-w-md">
             <h1 class="font-bold p-3 text-center bg-black/[5%]">Register</h1>
             <hr>
             <form class="flex flex-col px-10 py-5" method="POST" action="{{ url('/register') }}" enctype="multipart/form-data">
@@ -59,7 +59,7 @@
                     <label class="mb-3 text-red-500 text-sm">{{ $errors->first('country') }}</label>
                 @endif
                 <div class="flex flex-row justify-center">
-                    <button type="submit" class="border border-black/[50%] rounded w-[10vw] py-2">Register</button>
+                    <button type="submit" class="border border-black/[50%] rounded w-2/6 py-2">Register</button>
                 </div>
             </form>
             <div class="px-10 mb-5">

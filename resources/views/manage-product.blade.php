@@ -1,10 +1,10 @@
 @extends('components.layout', ['categories' => ($categories = App\Models\Category::all())])
 
 @section('content')
-    <div class="pt-10 w-2/4 mx-auto flex flex-row">
-        <div class="flex flex-row justify-between mx-auto w-[100%] mb-3">
+    <div class="w-5/6 pt-10 lg:w-4/6 mx-auto flex flex-row">
+        <div class="flex md:flex-row md:justify-between flex-col w-[100%] mb-3">
             <form method="GET" enctype="multipart/form-data" action="{{ url('/search-admin') }}"
-                class="flex flex-row items-stretch">
+                class="flex flex-row items-stretch mb-3">
                 @csrf
                 <input type="text" class="bg-white px-4 outline-none" placeholder="Product Name" value=""
                     name="query">
@@ -18,10 +18,10 @@
             </form>
         </div>
     </div>
-    <div class="w-2/4 mx-auto mb-5">
+    <div class="w-5/6 lg:w-4/6 mx-auto mb-5">
         @foreach ($products as $product)
             <x-manage-product-card :product="$product"></x-manage-product-card>
         @endforeach
-        {{ $products->appends(request()->query())->links() }}
+        {{ $products->links() }}
     </div>
 @endsection

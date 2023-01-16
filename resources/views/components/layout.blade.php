@@ -49,8 +49,8 @@
     <title>Barbatos Shop</title>
 </head>
 
-<body class="bg-gray">
-    <header class="flex flex-row px-32 py-3 items-center bg-white w-[100vw] justify-between fixed top-0 z-50">
+<body class="bg-gray overflow-x-hidden">
+    <header class="flex flex-row lg:px-32 px-6 py-3 items-center bg-white w-[100vw] justify-between fixed top-0 z-50">
         <div class="flex flex-row items-center">
             <a href="{{ url('/') }}" class="text-black text-xl mr-5">Barbatos Shop</a>
             <div class="flex justify-center">
@@ -120,14 +120,14 @@
         @endauth
     </header>
     @if (session()->has('success'))
-        <div class="success-message fixed w-full flex top-14 justify-center animate-slowly-transparent opacity-0">
+        <div class="success-message fixed w-full flex md:top-14 top-[75px] justify-center animate-slowly-transparent opacity-0">
             <p class="bg-success text-white text-lg font-bold rounded-md px-48 py-3">
                 {{ session('success') }}
             </p>
         </div>
     @endif
 
-    <main class="mt-6">
+    <main class="mt-20 md:mt-12">
         @yield('content')
     </main>
 </body>

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="flex items-center h-[100vh] justify-center py-8">
-        <div class="flex flex-col bg-white w-2/4">
+        <div class="flex flex-col bg-white w-10/12 max-w-md">
             <p class="pl-4 py-2 text-black rounded-t border-b-[1px] border-gray-300 text-center font-bold">Profile</p>
             <form class="flex flex-col px-4 py-4">
                 <label>Name</label>
